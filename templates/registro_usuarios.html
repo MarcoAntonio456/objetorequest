@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
+</head>
+<body>
+    <h1>Registro de Usuarios</h1>
+    <form action="" method="POST">
+        <label>Nombre:</label><input type="text" name="nombre" required><br><br>
+        <label>Apellidos:</label><input type="text" name="apellidos" required><br><br>
+        <label>Correo Electrónico:</label><input type="email" name="email" required><br><br>
+        <label>Contraseña:</label><input type="password" name="password" required><br><br>
+        <input type="submit" value="Registrar">
+    </form>
+    <a href="{{ url_for('index') }}">Volver al menú principal</a>
+</body>
+</html>

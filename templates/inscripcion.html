@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripción en Curso</title>
+</head>
+<body>
+    <h1>Inscripción en Curso</h1>
+    <form action="" method="POST">
+        <label>Nombre:</label><input type="text" name="nombre" required><br><br>
+        <label>Apellidos:</label><input type="text" name="apellidos" required><br><br>
+        <label>Curso:</label>
+        <select name="curso" required>
+            <option value="Curso 1">Base de Datos</option>
+            <option value="Curso 2">Tecnologias Emergentes</option>
+            <option value="Curso 3">Progamacion Estructurada</option>
+            <option value="Curso 3">Ingenieria de Sistemas</option>
+            <option value="Curso 3">Robotica y Domotica</option>
+        </select><br><br>
+        <input type="submit" value="Enviar">
+    </form>
+    <a href="{{ url_for('index') }}">Volver al menú principal</a>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+</head>
+<body>
+    <h1>Menú de Formularios</h1>
+
+    <ul>
+        <li><a href="{{ url_for('inscripcion') }}">Inscripción en Curso</a></li>
+        <li><a href="{{ url_for('registro_usuarios') }}">Registro de Usuarios</a></li>
+        <li><a href="{{ url_for('registro_productos') }}">Registro de Productos</a></li>
+        <li><a href="{{ url_for('registro_libros') }}">Registro de Libros</a></li>
+    </ul>
+
+    <h2>Datos Almacenados:</h2>
+
+    <!-- Tabla de Inscripción en Curso -->
+    <h3>Inscripción en Curso</h3>
+    {% set inscripciones = forms_data | selectattr('curso', 'defined') | list %}
+    {% if inscripciones %}
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Curso</th>
+        </tr>
+        {% for item in inscripciones %}
+        <tr>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.apellidos }}</td>
+            <td>{{ item.curso }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hay inscripciones en curso almacenadas.</p>
+    {% endif %}
+
+    <!-- Tabla de Registro de Usuarios -->
+    <h3>Registro de Usuarios</h3>
+    {% set usuarios = forms_data | selectattr('email', 'defined') | list %}
+    {% if usuarios %}
+    <table border="1">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Correo Electrónico</th>
+        </tr>
+        {% for item in usuarios %}
+        <tr>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.apellidos }}</td>
+            <td>{{ item.email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hay usuarios registrados.</p>
+    {% endif %}
+
+    <!-- Tabla de Registro de Productos -->
+    <h3>Registro de Productos</h3>
+    {% set productos = forms_data | selectattr('producto', 'defined') | list %}
+    {% if productos %}
+    <table border="1">
+        <tr>
+            <th>Producto</th>
+            <th>Categoría</th>
+            <th>Existencia</th>
+            <th>Precio</th>
+        </tr>
+        {% for item in productos %}
+        <tr>
+            <td>{{ item.producto }}</td>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.existencia }}</td>
+            <td>{{ item.precio }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hay productos registrados.</p>
+    {% endif %}
+
+    <!-- Tabla de Registro de Libros -->
+    <h3>Registro de Libros</h3>
+    {% set libros = forms_data | selectattr('titulo', 'defined') | list %}
+    {% if libros %}
+    <table border="1">
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Resumen</th>
+            <th>Medio Físico</th>
+            <th>Medio Magnético</th>
+        </tr>
+        {% for item in libros %}
+        <tr>
+            <td>{{ item.titulo }}</td>
+            <td>{{ item.autor }}</td>
+            <td>{{ item.resumen }}</td>
+            <td>{{ "Sí" if item.medio_fisico else "No" }}</td>
+            <td>{{ "Sí" if item.medio_magnetico else "No" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hay libros registrados.</p>
+    {% endif %}
+
+    <a href="{{ url_for('vaciar') }}">Vaciar datos</a>
+</body>
+</html>
